@@ -67,7 +67,8 @@ export class HomeComponent implements OnInit {
     for (let i = 0; i < this.service.members.length; i++) {
       this.TotalList.push({
         member: this.service.members[i],
-        amount: 0
+        amount: 0,
+        count: 0
       });
     }
 
@@ -93,6 +94,7 @@ export class HomeComponent implements OnInit {
           let mm = this.TotalList[m];
           if (mm.member.$key == this.service.GetUser2(ii.paidby).$key) {
             mm.amount += ii.amount;
+            mm.count += 1;
           }
         }
       }

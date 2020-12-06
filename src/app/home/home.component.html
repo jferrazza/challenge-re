@@ -49,3 +49,23 @@ routerLink="/add">Add...</button>
         </tr>
     </tbody>
 </table>
+<hr>
+<h1>User summary</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Total Amount/Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of TotalList">
+            <td>{{dataItem.member.name}}</td>
+            <td>{{dataItem.member.email}}</td>
+            <td>{{dataItem.member.role}}</td>
+            <td><span *ngIf="dataItem.amount==0">None<br>None</span><span *ngIf="dataItem.amount!=0">${{dataItem.amount.toFixed(2)}}<br>{{dataItem.count}} venue(s)</span></td>
+        </tr>
+    </tbody>
+</table>
