@@ -1,0 +1,6 @@
+<div class="contain">
+    <h1 class="logo">Basketball Game Manager</h1>
+    <h2 class="header">Welcome {{this.service.staffRef.name}} <span *ngIf="this.service.staffRef.role=='Team Manager'" style="color:darkred"><b>(MANAGER)</b></span><span *ngIf="this.service.staffRef.role=='Team Member'" style="color:navy">(MEMBER)</span></h2>
+</div>
+
+<button class="btn btn-danger" onclick="window.location='/'">Logout!</button>
