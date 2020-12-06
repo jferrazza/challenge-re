@@ -17,8 +17,11 @@ export class HomeComponent implements OnInit {
   constructor(private shared: SharedService, private router: Router) {
     this.service = this.shared;
     if (this.service.staffRef == undefined)
+    {
+      console.error("Login not specified. Quitting!")
       this.router.navigate(['/']);
-    else
+    }
+        else
       this.refreshGames();
 
   }
@@ -38,12 +41,12 @@ export class HomeComponent implements OnInit {
     }
   }
   payGame(id) {
+    console.log(id);
     this.service.GameRef = id;
-    this.router.navigate(['/shout']);
+    this.router.navigate(['/pay']);
   }
 
   refreshGames() {
-    console.info(this.today);
     let s = this.service.GetGames();
     this.CoffeeList = [];
     this.CoffeeListF = [];
@@ -71,13 +74,11 @@ export class HomeComponent implements OnInit {
 
   }
   refreshFilters() {
-
+    console.log("Now filtering list...");
     for (let i = 0; i < this.CoffeeList.length; i++) {
       let ii = this.CoffeeList[i];
       //https://stackoverflow.com/questions/5619202/converting-a-string-to-a-date-in-javascript
       let d = this.service.ToDate(ii);
-      console.log(d);
-      console.log(this.today);
 
 
       let isfuture = d >= this.today;
@@ -90,7 +91,6 @@ export class HomeComponent implements OnInit {
       if (ii.paidby != null) {
         for (let m = 0; m < this.TotalList.length; m++) {
           let mm = this.TotalList[m];
-          console.log(ii.paidby);
           if (mm.member.$key == this.service.GetUser2(ii.paidby).$key) {
             mm.amount += ii.amount;
           }

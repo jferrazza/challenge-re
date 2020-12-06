@@ -4,3 +4,48 @@
 </div>
 
 <button class="btn btn-danger" onclick="window.location='/'">Logout!</button>
+<button *ngIf="this.service.staffRef.role=='Team Manager'" class="btn btn-success"
+routerLink="/add">Add...</button>
+<button class="btn btn-primary" (click)="refreshGames()">Refresh</button>
+<h1>Game dates</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Details</th>
+            <th>Venue/Court</th>
+            <th>Date/Time</th>
+            <th><i>Options</i></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of CoffeeListF">
+            <td>{{dataItem.name}}</td>
+            <td>{{dataItem.venue}}<br>{{dataItem.court}}</td>
+            <td>{{dataItem.date}}<br>{{dataItem.time}}</td>
+            <td><button class="btn btn-danger" (click)="deleteGame(dataItem.$key)">Cancel</button></td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h2>Past games</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Details</th>
+            <th>Venue/Court</th>
+            <th>Date/Time</th>
+            <th>Paid by</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of CoffeeListP">
+            <td>{{dataItem.name}}</td>
+            <td>{{dataItem.venue}}<br>{{dataItem.court}}</td>
+            <td>{{dataItem.date}}<br>{{dataItem.time}}</td>
+            <td><b *ngIf="dataItem.paidby==null">Not specified!</b><span *ngIf="dataItem.paidby!=null">{{this.service.GetUser2(dataItem.paidby).name}}<br>{{this.service.GetUser2(dataItem.paidby).email}}</span></td>
+            <td><button *ngIf="dataItem.paidby==null" class="btn btn-success" (click)="payGame(dataItem)">Paid by...</button><span *ngIf="dataItem.paidby!=null">${{dataItem.amount.toFixed(2)}}</span></td>
+        </tr>
+    </tbody>
+</table>

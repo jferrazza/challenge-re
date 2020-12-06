@@ -1,0 +1,19 @@
+<form [formGroup]="addForm" (ngSubmit)="onSubmit(addForm.value)">
+    <p *ngIf="this.warn" class="alert alert-danger">{{this.warn}}</p>
+    <div class="form-group">
+        <p>Venue <b>{{this.share.GameRef.venue}} <b>court</b> {{this.share.GameRef.court}}</b></p>
+        <p>Date <b>{{this.share.GameRef.date}} {{this.share.GameRef.time}}</b></p>
+        <label>Paid by</label>
+        <select id="paidby" formControlName="paidby">
+            <option *ngFor="let item of this.share.members" value="{{item.$key}}">{{item.name}}</option>
+        </select>
+        <!-- <p><b *ngIf="!this.user">Please Select</b> <b>{{this.user}}</b></p>
+
+        <button type="button" *ngFor="let item of this.share.members" style="display: block;" (click)="getUser(item.$key,item.name)" class="btn btn-light">{{item.name}}</button>
+   -->  </div>
+    <div class="form-group">
+        <label for="amount">Amount Paid</label>
+        <input id="amount" type="number" class="form-control" formControlName="amount">
+    </div>
+    <button type="submit" class="btn btn-success">Add!</button>
+</form>
