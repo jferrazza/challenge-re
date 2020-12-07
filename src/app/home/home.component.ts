@@ -37,7 +37,9 @@ export class HomeComponent implements OnInit {
   deleteGame(id) {
     if (confirm("Are you sure you want to forfeit this date?")) {
       this.service.DeleteGame(id);
-      this.refreshGames();
+      setTimeout(() => {
+        this.refreshGames();
+      }, 100);
     }
   }
   payGame(id) {
