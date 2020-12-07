@@ -23,9 +23,10 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
 
     let s = this.service.GetUsers();
-    this.members = [];
-    this.service.members = [];
+
     s.snapshotChanges().subscribe(data => {
+      this.members = [];
+      this.service.members = [];
       data.forEach(item => {
         let a = item.payload.toJSON();
         a['$key'] = item.key;
