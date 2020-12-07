@@ -64,16 +64,17 @@ export class HomeComponent implements OnInit {
         this.CoffeeList.push(a as Game);
       })
       console.log("List received...");
+      for (let i = 0; i < this.service.members.length; i++) {
+        this.TotalList.push({
+          member: this.service.members[i],
+          amount: 0,
+          count: 0
+        });
+      }
       this.refreshFilters();
     });
 
-    for (let i = 0; i < this.service.members.length; i++) {
-      this.TotalList.push({
-        member: this.service.members[i],
-        amount: 0,
-        count: 0
-      });
-    }
+    
 
 
   }
