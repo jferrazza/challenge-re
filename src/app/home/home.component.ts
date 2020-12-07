@@ -50,13 +50,14 @@ export class HomeComponent implements OnInit {
 
   refreshGames() {
     let s = this.service.GetGames();
-    this.CoffeeList = [];
-    this.CoffeeListF = [];
-    this.CoffeeListP = [];
-    this.TotalList = [];
+
     console.log("Getting list...");
 
     s.snapshotChanges().subscribe(data => { 
+      this.CoffeeList = [];
+      this.CoffeeListF = [];
+      this.CoffeeListP = [];
+      this.TotalList = [];
       data.forEach(item => {
         let a = item.payload.toJSON();
         a['$key'] = item.key;
